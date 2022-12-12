@@ -1,0 +1,27 @@
+.ice-logo {
+    height: 8vh;
+    margin-left: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5vh;
+    width: 60%;
+    padding: 25px;
+    background-color: #DEE2E6;
+}
+
+#deliveries {
+    margin-top: 10vh;
+}
+
+.btn {
+    margin-top: 15px;
+}
