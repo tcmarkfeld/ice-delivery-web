@@ -15,7 +15,12 @@
     margin-top: 5vh;
     width: 60%;
     padding: 25px;
-    background-color: #DEE2E6;
+    border-radius: 1%;
+    background-color: #dee2e6;
+}
+
+.navbar-collapse.in {
+    display: block !important;
 }
 
 #deliveries {
@@ -24,4 +29,17 @@
 
 .btn {
     margin-top: 15px;
+}
+
+button {
+    background-color: #48BCD1 !important;
+    border-color: #48BCD1 !important;
+}
+
+#deliveries {
+    overflow-x: auto;
+}
+
+.table-container {
+    margin: 30px;
 }

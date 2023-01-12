@@ -81,7 +81,7 @@ function checkFields() {
   ) {
     alert("Please fill out all fields");
   } else {
-    var addDeliveryURL = `https://corolla-ice-delivery.herokuapp.com/api/delivery/add/${cooler}/${icetype}/${address}/${name}/${phone}/${email}/${startdate}/${enddate}/${neighborhood}`;
+    var addDeliveryURL = `https://ice-delivery.fly.dev/api/delivery/add/${cooler}/${icetype}/${address}/${name}/${phone}/${email}/${startdate}/${enddate}/${neighborhood}`;
     fetch(addDeliveryURL, {
       method: "POST",
       headers: {

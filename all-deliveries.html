@@ -13,7 +13,7 @@
 </head>
 <body onload="getDeliveries()">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <img src="./assets/ice-delivery.webp" class="ice-logo" />
+        <a href="./index.html"><img src="./assets/ice-delivery.webp" class="ice-logo" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,19 +30,20 @@
         </div>
       </nav>
 
-    <div class="container">
+    <div class="table-container">
         <section id="deliveries">
-            <table id="myTable" class="display">
-                <thead>
+            <table id="myTable" class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
                   <tr>
+                    <th scope="col">Week</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
                     <th scope="col">Cooler Size</th>
                     <th scope="col">Ice Type</th>
                     <th scope="col">Delivery Address</th>
                     <th scope="col">Customer Name</th>
                     <th scope="col">Customer Phone</th>
                     <th scope="col">Customer Email</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">End Date</th>
                     <th scope="col">Neighborhood</th>
                   </tr>
                 </thead>
@@ -59,9 +60,10 @@
         </section>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
     <script src="./js/deliveries.js"></script>
 </body>
