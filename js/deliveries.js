@@ -8,7 +8,7 @@ async function getDeliveries() {
     return new Date(a.start_date) - new Date(b.start_date);
   });
 
-  fillTable(ordered_array);
+  displayDeliveries(ordered_array);
   return data;
 }
 
@@ -110,7 +110,7 @@ juneDates.push("June");
 julyDates.push("July");
 augustDates.push("August");
 septDates.push("September");
-console.log(weeks);
+
 function fillTable(data) {
   var tablebody = document.getElementById("tableBody");
   var html = "<div>";
@@ -135,7 +135,7 @@ function fillTable(data) {
     }
 
     var i = -1;
-    html += `<tr id="tableRow">`;
+    html += `<tr class="email-wrapper" id="tableRow">`;
     if (startMonth == "April") {
       i = 0;
     } else if (startMonth == "May") {
@@ -188,7 +188,7 @@ function fillTable(data) {
       10
     )}</td><td scope="col">${dat.end_date.slice(0, 10)}</td>`;
     html += `<td scope="col">${dat.cooler_size}</td><td scope="col">${dat.ice_type}</td>`;
-    html += `<td scope="col">${dat.delivery_address}</td><td scope="col">${dat.customer_name}</td>`;
+    html += `<td scope="col">${dat.delivery_address}</td><td scope="col" class="userEmail">${dat.customer_name}</td>`;
     html += `<td scope="col">${dat.customer_phone}</td><td scope="col">${dat.customer_email}</td>`;
     html += `<td scope="col">${dat.neighborhood}</td></tr>`;
     i++;
@@ -196,26 +196,59 @@ function fillTable(data) {
   html += "</div>";
   tablebody.innerHTML = html;
 }
+var editor;
 
 function displayDeliveries(data) {
   for (i in data) {
     data[i].start_date = data[i].start_date.slice(0, 10);
     data[i].end_date = data[i].end_date.slice(0, 10);
   }
+
   $("#myTable").DataTable({
     dom: "Bfrtip",
     buttons: ["pageLength", "copy", "csv", "excel"],
     data: data,
     columns: [
+      {
+        data: null,
+        defaultContent: "",
+        className: "select-checkbox",
+        orderable: false,
+      },
+      { data: "start_date" },
+      { data: "end_date" },
       { data: "cooler_size" },
       { data: "ice_type" },
       { data: "delivery_address" },
       { data: "customer_name" },
       { data: "customer_phone" },
       { data: "customer_email" },
-      { data: "start_date" },
-      { data: "end_date" },
       { data: "neighborhood" },
     ],
+    select: {
+      style: "os",
+      selector: "td:first-child",
+    },
+    buttons: ["copy"],
   });
+
+  $("#myTable").on("click", "tbody td:not(:first-child)", function (e) {
+    editor.inline(this);
+  });
+}
+
+function searchEmail() {
+  let input = document.getElementById("searchbar").value;
+  input = input.toLowerCase();
+  let x = document.getElementsByClassName("userEmail");
+  let y = document.getElementsByClassName("email-wrapper");
+
+  for (i = 0; i < x.length; i++) {
+    if (!x[i].innerHTML.toLowerCase().includes(input)) {
+      y[i].style.display = "none";
+    } else {
+      x[i].style.display = "span";
+      y[i].style.display = "block";
+    }
+  }
 }

@@ -43,3 +43,24 @@ button {
 .table-container {
     margin: 30px;
 }
+
+#searchbar{
+    background-color: var(--white);
+    position: relative;
+    color: var(--black);
+    border-radius: 5px;
+    box-shadow: var(--medium) 1px 1px 0px 0px;
+    border-radius: 5px;
+  }
+
+  input[type=text] {
+     width: 30%;
+     -webkit-transition: width 0.15s ease-in-out;
+     transition: width 0.15s ease-in-out;
+  }
+
+  /* When the input field gets focus,
+       change its width to 100% */
+  input[type=text]:focus {
+    width: 35%;
+  }

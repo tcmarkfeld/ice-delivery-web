@@ -55,16 +55,17 @@
                     <option value="Currituck Club">Currituck Club</option>
                 </select><br>
             <label for="address">Delivery Address:</label><br>
-                <input type="text" id="address" name="address" value=""><br>
+                <input id="address" name="address" value=""><br>
             <label for="name">Customer Name:</label><br>
-                <input type="text" id="name" name="name"><br>
+                <input id="name" name="name"><br>
             <label for="phoneNumber">Phone Number:</label><br>
                 <input id="phoneNumber" maxlength="13" /><br>
             <label for="email">Customer Email:</label><br>
-                <input type="email" id="email" name="email"><br>
+                <input id="email" name="email"><br>
             <label for="startdate">Start Date:</label><br>
                 <input type="date" id="startdate" name="startdate"><br>
             <label for="enddate">End Date:</label><br>
+            <div style="color: rgb(183, 43, 43)">*The last day that delivery is needed</div>
                 <input type="date" id="enddate" name="enddate"><br><br>
             <button class="btn btn-primary" onclick="checkFields();">Submit</button>
           </form> 
