@@ -59,14 +59,18 @@ inputElement.addEventListener("keyup", formatToPhone);
 
 function checkFields() {
   var cooler = document.getElementById("cooler").value;
-  var icetype = document.getElementById("icetype").value;
+  var ice = document.getElementById("icetype").value;
   var neighborhood = document.getElementById("neighborhood").value;
   var address = document.getElementById("address").value;
   var name = document.getElementById("name").value;
   var phone = document.getElementById("phoneNumber").value;
   var email = document.getElementById("email").value;
-  var startdate = document.getElementById("startdate").value;
-  var enddate = document.getElementById("enddate").value;
+  var start_date = document.getElementById("startdate").value;
+  var end_date = document.getElementById("enddate").value;
+  var special = document.getElementById("special").value;
+  if (special == null) {
+    special = "";
+  }
 
   if (
     (cooler === "") |
@@ -76,21 +80,33 @@ function checkFields() {
     (name === "") |
     (phone === "") |
     (email === "") |
-    (startdate === "") |
-    (enddate === "")
+    (start_date === "") |
+    (end_date === "")
   ) {
     alert("Please fill out all fields");
   } else {
-    var addDeliveryURL = `https://ice-delivery.fly.dev/api/delivery/add/${cooler}/${icetype}/${address}/${name}/${phone}/${email}/${startdate}/${enddate}/${neighborhood}`;
+    var addDeliveryURL = `https://ice-delivery.fly.dev/api/delivery/add`;
     fetch(addDeliveryURL, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        delivery_address: address,
+        customer_name: name,
+        customer_phone: phone,
+        customer_email: email,
+        start_date: start_date.slice(0, 10),
+        end_date: end_date.slice(0, 10),
+        special_instructions: special,
+        cooler_size: cooler,
+        ice_type: ice,
+        neighborhood: neighborhood,
+      }),
     }).then((response) => {
       if (response.status == 200) {
-        alert("Reservation has been successfully added");
+        alert("Reservation successfully added!");
       } else {
         alert("Something went wrong. Please try again");
       }

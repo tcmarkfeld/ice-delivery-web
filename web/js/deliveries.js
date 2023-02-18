@@ -8,7 +8,7 @@ async function getDeliveries() {
     return new Date(a.start_date) - new Date(b.start_date);
   });
 
-  displayDeliveries(ordered_array);
+  fillTable(ordered_array);
   return data;
 }
 
@@ -43,7 +43,7 @@ function getWeeksInMonth(year, month) {
   return weeks
     .filter((w) => !!w.length)
     .map((w) => ({
-      start: w[0],
+      start: w[0] - 1,
       end: w[w.length - 1],
       dates: w,
     }));
@@ -81,6 +81,8 @@ const juneDates = getWeeksInMonth(year, 5);
 const julyDates = getWeeksInMonth(year, 6);
 const augustDates = getWeeksInMonth(year, 7);
 const septDates = getWeeksInMonth(year, 8);
+
+// aprilDates.splice(0, 1);
 
 // if (aprilDates[4].start === mayDates[0].start) {
 //   mayDates.splice(0, 1);
@@ -132,9 +134,11 @@ function fillTable(data) {
       startMonth = "August";
     } else if (startMonth == 9) {
       startMonth = "September";
+    } else if (startMonth == 10) {
+      startMonth = "October";
     }
 
-    var i = -1;
+    var i = 0;
     html += `<tr class="email-wrapper" id="tableRow">`;
     if (startMonth == "April") {
       i = 0;
@@ -148,8 +152,12 @@ function fillTable(data) {
       i = 4;
     } else if (startMonth == "September") {
       i = 5;
+    } else if (startMonth == "October") {
+      i = 6;
     }
-    console.log(weeks[i]);
+    // if (startMonth == weeks[i][weeks[i].length - 1]) {
+    //   html += `<td scope="col">${startMonth}</td>`;
+    // }
     if (
       parseInt(dat.start_date.slice(8, 10)) >= weeks[i][0].start &&
       parseInt(dat.end_date.slice(8, 10)) <= weeks[i][0].end
@@ -181,16 +189,30 @@ function fillTable(data) {
       var monthLength = weeks[i].length - 1;
       html += `<td scope="col">${weeks[i][monthLength]} ${weeks[i][4].start} - ${weeks[i][4].end}</td>`;
     } else {
-      html += `<td scope="col">Couldn't load date</td>`;
+      html += `<td scope="col">Couldn't load week</td>`;
     }
-    html += `<td scope="col">${dat.start_date.slice(
+    html += `<td scope="col"><input class='table-input' value='${dat.start_date.slice(
       0,
       10
-    )}</td><td scope="col">${dat.end_date.slice(0, 10)}</td>`;
-    html += `<td scope="col">${dat.cooler_size}</td><td scope="col">${dat.ice_type}</td>`;
-    html += `<td scope="col">${dat.delivery_address}</td><td scope="col" class="userEmail">${dat.customer_name}</td>`;
-    html += `<td scope="col">${dat.customer_phone}</td><td scope="col">${dat.customer_email}</td>`;
-    html += `<td scope="col">${dat.neighborhood}</td></tr>`;
+    )}'/></td><td scope="col"><input class='table-input' value='${dat.end_date.slice(
+      0,
+      10
+    )}'/></td>`;
+    html += `<td scope="col"><input class='table-input' value='${dat.cooler_size}'/></td><td scope="col"><input class='table-input' value='${dat.ice_type}'/></td>`;
+    html += `<td scope="col"><input class='table-input' value='${dat.delivery_address}'/></td><td scope="col" class="userEmail"><input class='table-input' value='${dat.customer_name}'/></td>`;
+    html += `<td scope="col"><input id="phoneNumber" class='table-input' maxlength="13" value='${dat.customer_phone}'/></td><td scope="col"><input class='table-input' value='${dat.customer_email}'/></td>`;
+    html += `<td scope="col"><input class='table-input' value='${dat.neighborhood}'/></td>`;
+    html += `<td scope="col"><button class='btn btn-primary submit-button' onclick="saveChange(${
+      dat.id
+    }, '${dat.delivery_address}', '${dat.customer_name}', '${
+      dat.customer_phone
+    }', '${dat.customer_email}', '${dat.start_date.slice(
+      0,
+      10
+    )}', '${dat.end_date.slice(0, 10)}', '${dat.special_instructions}', '${
+      dat.cooler_size
+    }', '${dat.ice_type}', '${dat.neighborhood}')">Save</button></td>`;
+    html += `<td scope="col"><button class='btn btn-danger' onclick='confirmDelete(${dat.id})'>Delete</button></td></tr>`;
     i++;
   }
   html += "</div>";
@@ -198,42 +220,72 @@ function fillTable(data) {
 }
 var editor;
 
-function displayDeliveries(data) {
-  for (i in data) {
-    data[i].start_date = data[i].start_date.slice(0, 10);
-    data[i].end_date = data[i].end_date.slice(0, 10);
-  }
+function saveChange(
+  id,
+  delivery_address,
+  customer_name,
+  customer_phone,
+  customer_email,
+  start_date,
+  end_date,
+  special_instructions,
+  cooler_size,
+  ice_type,
+  neighborhood
+) {
+  const saveDeliveryURL = `https://ice-delivery.fly.dev/api/delivery/edit/${id}`;
 
-  $("#myTable").DataTable({
-    dom: "Bfrtip",
-    buttons: ["pageLength", "copy", "csv", "excel"],
-    data: data,
-    columns: [
-      {
-        data: null,
-        defaultContent: "",
-        className: "select-checkbox",
-        orderable: false,
-      },
-      { data: "start_date" },
-      { data: "end_date" },
-      { data: "cooler_size" },
-      { data: "ice_type" },
-      { data: "delivery_address" },
-      { data: "customer_name" },
-      { data: "customer_phone" },
-      { data: "customer_email" },
-      { data: "neighborhood" },
-    ],
-    select: {
-      style: "os",
-      selector: "td:first-child",
+  fetch(saveDeliveryURL, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-    buttons: ["copy"],
+    body: JSON.stringify({
+      id: id,
+      delivery_address: delivery_address,
+      customer_name: customer_name,
+      customer_phone: customer_phone,
+      customer_email: customer_email,
+      start_date: start_date,
+      end_date: end_date,
+      special_instructions: special_instructions,
+      cooler_size: cooler_size,
+      ice_type: ice_type,
+      neighborhood: neighborhood,
+    }),
+  }).then((response) => {
+    if (response.status == 200) {
+      alert("Reservation has been successfully updated!");
+      getDeliveries();
+    } else {
+      alert("Something went wrong. Please try again");
+    }
   });
+}
 
-  $("#myTable").on("click", "tbody td:not(:first-child)", function (e) {
-    editor.inline(this);
+function confirmDelete(id) {
+  let isExecuted = confirm("Are you sure to delete this reservation?");
+  if (isExecuted == true) {
+    deleteRes(id);
+  }
+}
+
+function deleteRes(id) {
+  const deleteURL = `https://ice-delivery.fly.dev/api/delivery/delete/${id}`;
+  fetch(deleteURL, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  }).then((response) => {
+    if (response.status == 200) {
+      alert("Reservation successfully deleted!");
+      getDeliveries();
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
   });
 }
 

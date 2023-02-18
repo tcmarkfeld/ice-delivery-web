@@ -64,10 +64,11 @@
                 <input id="email" name="email"><br>
             <label for="startdate">Start Date:</label><br>
                 <input type="date" id="startdate" name="startdate"><br>
-            <label for="enddate">End Date:</label><br>
-            <div style="color: rgb(183, 43, 43)">*The last day that delivery is needed</div>
+            <label for="enddate">End Date: <span style="color: rgb(183, 43, 43)">*last day that delivery is needed*</span></label><br>
                 <input type="date" id="enddate" name="enddate"><br><br>
-            <button class="btn btn-primary" onclick="checkFields();">Submit</button>
+            <label for="startdate">Special instructions (optional):</label><br>
+                <input style="margin-bottom: 15px;" id="special" name="special"><br>
+            <button class="btn submit-button" onclick="checkFields();">Submit</button>
           </form> 
       </div>
 

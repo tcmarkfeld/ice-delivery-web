@@ -12,9 +12,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 5vh;
+    margin-top: 2.5vh;
     width: 60%;
     padding: 25px;
+    margin-bottom: 2.5vh;
     border-radius: 1%;
     background-color: #dee2e6;
 }
@@ -27,13 +28,10 @@
     margin-top: 10vh;
 }
 
-.btn {
-    margin-top: 15px;
-}
-
-button {
+.submit-button {
     background-color: #48BCD1 !important;
     border-color: #48BCD1 !important;
+    color: white;
 }
 
 #deliveries {
@@ -64,3 +62,7 @@ button {
   input[type=text]:focus {
     width: 35%;
   }
+
+.table-input {
+    width: 7.5vw;
+}
