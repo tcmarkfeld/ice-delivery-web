@@ -1,7 +1,13 @@
 const allDeliveriesURL = "https://ice-delivery.fly.dev/api/delivery/getall";
 
+const token = localStorage.getItem("token");
+
 async function getDeliveries() {
-  const response = await fetch(allDeliveriesURL);
+  const response = await fetch(allDeliveriesURL, {
+    headers: {
+      "auth-token": token,
+    },
+  });
   const data = await response.json();
 
   var ordered_array = data.sort(function (a, b) {
@@ -191,27 +197,63 @@ function fillTable(data) {
     } else {
       html += `<td scope="col">Couldn't load week</td>`;
     }
-    html += `<td scope="col"><input class='table-input' value='${dat.start_date.slice(
-      0,
-      10
-    )}'/></td><td scope="col"><input class='table-input' value='${dat.end_date.slice(
-      0,
-      10
-    )}'/></td>`;
-    html += `<td scope="col"><input class='table-input' value='${dat.cooler_size}'/></td><td scope="col"><input class='table-input' value='${dat.ice_type}'/></td>`;
-    html += `<td scope="col"><input class='table-input' value='${dat.delivery_address}'/></td><td scope="col" class="userEmail"><input class='table-input' value='${dat.customer_name}'/></td>`;
-    html += `<td scope="col"><input id="phoneNumber" class='table-input' maxlength="13" value='${dat.customer_phone}'/></td><td scope="col"><input class='table-input' value='${dat.customer_email}'/></td>`;
-    html += `<td scope="col"><input class='table-input' value='${dat.neighborhood}'/></td>`;
-    html += `<td scope="col"><button class='btn btn-primary submit-button' onclick="saveChange(${
+    html += `<td scope="col"><input class='table-input' id="start${
       dat.id
-    }, '${dat.delivery_address}', '${dat.customer_name}', '${
-      dat.customer_phone
-    }', '${dat.customer_email}', '${dat.start_date.slice(
+    }" value='${dat.start_date.slice(
       0,
       10
-    )}', '${dat.end_date.slice(0, 10)}', '${dat.special_instructions}', '${
-      dat.cooler_size
-    }', '${dat.ice_type}', '${dat.neighborhood}')">Save</button></td>`;
+    )}'/></td><td scope="col"><input class='table-input' id="end${
+      dat.id
+    }" value='${dat.end_date.slice(0, 10)}'/></td>`;
+    if (dat.cooler_size.toLowerCase() == "62 quart") {
+      html += `<td scope="col"><select name="cooler" id="cooler${dat.id}">
+      <option value="${
+        dat.cooler_size
+      }">${dat.cooler_size.toLowerCase()}</option>
+      <option value="40 Quart">40 quart</option>
+  </select></td><td scope="col">`;
+    } else {
+      html += `<td scope="col"><select name="cooler" id="cooler${dat.id}">
+      <option value="${
+        dat.cooler_size
+      }">${dat.cooler_size.toLowerCase()}</option>
+      <option value="62 Quart">62 quart</option>
+  </select></td><td scope="col">`;
+    }
+    if (dat.ice_type.toLowerCase() == "loose ice") {
+      html += `<select name="icetype" id="icetype${dat.id}">
+      <option value="${dat.ice_type}">${dat.ice_type.toLowerCase()}</option>
+      <option value="BAGGED ICE">bagged ice</option>
+  </select></td>`;
+    } else {
+      html += `<select name="icetype" id="icetype${dat.id}">
+      <option value="${dat.ice_type}">${dat.ice_type.toLowerCase()}</option>
+      <option value="LOOSE ICE">loose ice</option>
+  </select></td>`;
+    }
+    html += `<td scope="col"><input class='table-input' id="address${dat.id}" value='${dat.delivery_address}'/></td><td scope="col" class="userEmail"><input class='table-input' id="name${dat.id}" value='${dat.customer_name}'/></td>`;
+    html += `<td scope="col"><input id="phoneNumber${dat.id}" class='table-input' maxlength="13" value='${dat.customer_phone}'/></td><td scope="col"><input class='table-input' id="email${dat.id}" value='${dat.customer_email}'/></td>`;
+    html += `<td scope="col"><select style="width: 7.5vw;" name="neighborhood" id="neighborhood${dat.id}">
+    <option value="${dat.neighborhood}">${dat.neighborhood_name}</option>
+    <option value="1">Ocean Hill</option>
+    <option value="2">Corolla Light</option>
+    <option value="3">Whalehead</option>
+    <option value="16">Cruz Bay (Soundfront at Corolla Bay)</option>
+    <option value="15">Monteray Shores</option>
+    <option value="14">Buck Island</option>
+    <option value="13">Crown Point</option>
+    <option value="12">KLMPQ</option>
+    <option value="11">HIJO</option>
+    <option value="10">Section F</option>
+    <option value="4">Currituck Club</option>
+    <option value="9">Section D</option>
+    <option value="8">Section C</option>
+    <option value="7">Section B</option>
+    <option value="6">Section A</option>
+    <option value="5">Pine Island</option>
+</select></td>`;
+    html += `<td scope="col"><input class='table-input' id="special${dat.id}" value='${dat.special_instructions}'/></td>`;
+    html += `<td scope="col"><button class='btn btn-primary submit-button' onclick="saveChange(${dat.id})">Save</button></td>`;
     html += `<td scope="col"><button class='btn btn-danger' onclick='confirmDelete(${dat.id})'>Delete</button></td></tr>`;
     i++;
   }
@@ -220,19 +262,18 @@ function fillTable(data) {
 }
 var editor;
 
-function saveChange(
-  id,
-  delivery_address,
-  customer_name,
-  customer_phone,
-  customer_email,
-  start_date,
-  end_date,
-  special_instructions,
-  cooler_size,
-  ice_type,
-  neighborhood
-) {
+function saveChange(id) {
+  var delivery_address = document.getElementById(`address${id}`).value;
+  var customer_name = document.getElementById(`name${id}`).value;
+  var customer_phone = document.getElementById(`phoneNumber${id}`).value;
+  var customer_email = document.getElementById(`email${id}`).value;
+  var start_date = document.getElementById(`start${id}`).value;
+  var end_date = document.getElementById(`end${id}`).value;
+  var special_instructions = document.getElementById(`special${id}`).value;
+  var cooler_size = document.getElementById(`cooler${id}`).value;
+  var ice_type = document.getElementById(`icetype${id}`).value;
+  var neighborhood = document.getElementById(`neighborhood${id}`).value;
+
   const saveDeliveryURL = `https://ice-delivery.fly.dev/api/delivery/edit/${id}`;
 
   fetch(saveDeliveryURL, {
@@ -240,6 +281,7 @@ function saveChange(
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      "auth-token": token,
     },
     body: JSON.stringify({
       id: id,
@@ -278,6 +320,7 @@ function deleteRes(id) {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      "auth-token": token,
     },
   }).then((response) => {
     if (response.status == 200) {

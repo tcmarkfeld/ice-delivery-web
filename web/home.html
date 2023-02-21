@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ice Delivery | Add Delivery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="./css/index.css" rel="stylesheet">
+    <link rel="icon" href="./assets/ice-delivery.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body onload="verifyLoggedIn(), clearInp()">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a href="#"><img src="./assets/ice-delivery.webp" class="ice-logo" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto nav-ul">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Add Delivery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./all-deliveries.html">All Deliveries</a>
+            </li>
+            <li class="nav-item logout-btn">
+                <button class="btn-nav-link" onclick="clearAuthData()">Logout</button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container">
+        <form class="add-form" id="myForm" onsubmit="return false;">
+            <label for="cooler">Cooler Size:</label><br>
+                <select name="cooler" id="cooler">
+                    <option value="null">Select one...</option>
+                    <option value="40 Quart">40 Quart</option>
+                    <option value="62 Quart">62 Quart</option>
+                </select><br>
+            <label for="icetype">Ice Type:</label><br>
+                <select name="icetype" id="icetype">
+                    <option value="null">Select one...</option>
+                    <option value="Loose ice">Loose ice</option>
+                    <option value="Bagged ice">Bagged ice</option>
+                </select><br>
+            <label for="neighborhood">Neighborhood:</label><br>
+                <select name="neighborhood" id="neighborhood">
+                    <option value="null">Select one...</option>
+                    <option value="1">Ocean Hill</option>
+                    <option value="2">Corolla Light</option>
+                    <option value="3">Whalehead</option>
+                    <option value="16">Cruz Bay (Soundfront at Corolla Bay)</option>
+                    <option value="15">Monteray Shores</option>
+                    <option value="14">Buck Island</option>
+                    <option value="13">Crown Point</option>
+                    <option value="12">KLMPQ</option>
+                    <option value="11">HIJO</option>
+                    <option value="10">Section F</option>
+                    <option value="4">Currituck Club</option>
+                    <option value="9">Section D</option>
+                    <option value="8">Section C</option>
+                    <option value="7">Section B</option>
+                    <option value="6">Section A</option>
+                    <option value="5">Pine Island</option>
+                </select><br>
+            <label for="address">Delivery Address:</label><br>
+                <input id="address" name="address" value=""><br>
+            <label for="name">Customer Name:</label><br>
+                <input id="name" name="name"><br>
+            <label for="phoneNumber">Phone Number:</label><br>
+                <input id="phoneNumber" maxlength="13" /><br>
+            <label for="email">Customer Email:</label><br>
+                <input id="email" name="email"><br>
+            <label for="startdate">Start Date:</label><br>
+                <input type="date" id="startdate" name="startdate"><br>
+            <label for="enddate">End Date: <span style="color: rgb(183, 43, 43)">*last day that delivery is needed*</span></label><br>
+                <input type="date" id="enddate" name="enddate"><br><br>
+            <label for="startdate">Special instructions (optional):</label><br>
+                <input style="margin-bottom: 15px;" id="special" name="special"><br>
+            <button class="btn submit-button" onclick="checkFields();">Submit</button>
+          </form> 
+      </div>
+
+      <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/login.js"></script>
+</body>
+</html>

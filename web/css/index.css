@@ -39,7 +39,7 @@
 }
 
 .table-container {
-    margin: 30px;
+    margin: 15px;
 }
 
 #searchbar{
@@ -66,3 +66,39 @@
 .table-input {
     width: 7.5vw;
 }
+
+.nav-link {
+    color: rgb(208, 199, 199) !important;
+}
+.nav-link:hover {
+    transition: 0.6s all;
+        color: #48BCD1 !important;
+}
+.nav-link:not(:hover) {
+    transition: 0.6s all;
+    color: rgb(208, 199, 199) !important;
+}
+
+.btn-nav-link {
+    border: none;
+    background-color: transparent !important;
+}
+    .btn-nav-link:hover {
+        transition: 0.6s all;
+        color: #48BCD1 !important;
+    }
+    .btn-nav-link:not(:hover) {
+        transition: 0.6s all;
+        color: rgb(208, 199, 199) !important;
+    }
+
+    .logout-btn {
+        display: flex;
+        align-items: center;
+        margin-right: 25px;
+        margin-left: auto;
+    }
+
+    .nav-ul {
+        width: 100%;
+    }

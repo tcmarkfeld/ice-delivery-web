@@ -91,6 +91,7 @@ function checkFields() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        "auth-token": token,
       },
       body: JSON.stringify({
         delivery_address: address,
