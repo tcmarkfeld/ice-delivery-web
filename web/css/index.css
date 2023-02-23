@@ -80,6 +80,9 @@
 }
     .table-input:focus {
         outline: 1.5px solid var(--primary);
+        -webkit-transition: width 0.15s ease-in-out;
+        transition: width 0.15s ease-in-out;
+        width: fit-content !important;
     }
 
 .nav-link {
