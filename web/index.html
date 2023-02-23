@@ -19,9 +19,10 @@
         </div> -->
         
         <form id="login-form" onsubmit="return false">
-          <input type="text" name="email" id="email-field" class="login-form-field" placeholder="email">
+          <input type="email" name="email" id="email-field" class="login-form-field" placeholder="email">
           <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
-          <button type="button" class="btn btn-primary" id="login-form-submit" onclick="loginAdmin()">Login</button>
+          <!-- <button type="button" class="btn btn-primary" id="login-form-submit" onclick="loginAdmin()">Login</button> -->
+          <input type="submit" id="login-form-submit" value="Submit" onclick="loginAdmin()">
         </form>
         <div id="error-msg" style="color: red;">
 

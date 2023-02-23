@@ -171,39 +171,39 @@ function fillTable(data) {
         timeZone: "America/New_York",
       });
 
-    if (
-      parseInt(dat.start_date.slice(8, 10)) >= weeks[i][0].start &&
-      parseInt(dat.end_date.slice(8, 10)) <= weeks[i][0].end
-    ) {
-      var monthLength = weeks[i].length - 1;
-      html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][0].start} - ${weeks[i][0].end}</td>`;
-    } else if (
-      parseInt(dat.start_date.slice(8, 10)) >= weeks[i][1].start &&
-      parseInt(dat.end_date.slice(8, 10)) <= weeks[i][1].end
-    ) {
-      var monthLength = weeks[i].length - 1;
-      html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][1].start} - ${weeks[i][1].end}</td>`;
-    } else if (
-      parseInt(dat.start_date.slice(8, 10)) >= weeks[i][2].start &&
-      parseInt(dat.end_date.slice(8, 10)) <= weeks[i][2].end
-    ) {
-      var monthLength = weeks[i].length - 1;
-      html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][2].start} - ${weeks[i][2].end}</td>`;
-    } else if (
-      parseInt(dat.start_date.slice(8, 10)) >= weeks[i][3].start &&
-      parseInt(dat.end_date.slice(8, 10)) <= weeks[i][3].end
-    ) {
-      var monthLength = weeks[i].length - 1;
-      html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][3].start} - ${weeks[i][3].end}</td>`;
-    } else if (
-      parseInt(dat.start_date.slice(8, 10)) >= weeks[i][4].start ||
-      parseInt(dat.end_date.slice(8, 10)) <= weeks[i][4].end
-    ) {
-      var monthLength = weeks[i].length - 1;
-      html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][4].start} - ${weeks[i][4].end}</td>`;
-    } else {
-      html += `<td id="week" scope="col">Couldn't load week</td>`;
-    }
+    // if (
+    //   parseInt(dat.start_date.slice(8, 10)) >= weeks[i][0].start &&
+    //   parseInt(dat.end_date.slice(8, 10)) <= weeks[i][0].end
+    // ) {
+    //   var monthLength = weeks[i].length - 1;
+    //   html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][0].start} - ${weeks[i][0].end}</td>`;
+    // } else if (
+    //   parseInt(dat.start_date.slice(8, 10)) >= weeks[i][1].start &&
+    //   parseInt(dat.end_date.slice(8, 10)) <= weeks[i][1].end
+    // ) {
+    //   var monthLength = weeks[i].length - 1;
+    //   html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][1].start} - ${weeks[i][1].end}</td>`;
+    // } else if (
+    //   parseInt(dat.start_date.slice(8, 10)) >= weeks[i][2].start &&
+    //   parseInt(dat.end_date.slice(8, 10)) <= weeks[i][2].end
+    // ) {
+    //   var monthLength = weeks[i].length - 1;
+    //   html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][2].start} - ${weeks[i][2].end}</td>`;
+    // } else if (
+    //   parseInt(dat.start_date.slice(8, 10)) >= weeks[i][3].start &&
+    //   parseInt(dat.end_date.slice(8, 10)) <= weeks[i][3].end
+    // ) {
+    //   var monthLength = weeks[i].length - 1;
+    //   html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][3].start} - ${weeks[i][3].end}</td>`;
+    // } else if (
+    //   parseInt(dat.start_date.slice(8, 10)) >= weeks[i][4].start ||
+    //   parseInt(dat.end_date.slice(8, 10)) <= weeks[i][4].end
+    // ) {
+    //   var monthLength = weeks[i].length - 1;
+    //   html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][4].start} - ${weeks[i][4].end}</td>`;
+    // } else {
+    //   html += `<td id="week" scope="col">Couldn't load week</td>`;
+    // }
     if (
       dat.start_date.slice(0, 10) <= today &&
       dat.end_date.slice(0, 10) >= yesterday
