@@ -145,7 +145,7 @@ function fillTable(data) {
     }
 
     var i = 0;
-    html += `<tr class="email-wrapper" id="tableRow">`;
+    html += `<tr class="row-wrapper" id="tableRow">`;
     if (startMonth == "April") {
       i = 0;
     } else if (startMonth == "May") {
@@ -161,50 +161,71 @@ function fillTable(data) {
     } else if (startMonth == "October") {
       i = 6;
     }
-    // if (startMonth == weeks[i][weeks[i].length - 1]) {
-    //   html += `<td scope="col">${startMonth}</td>`;
-    // }
+
+    const today = new Date().toISOString().toLocaleString("en-US", {
+      timeZone: "America/New_York",
+    });
+    var yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000)
+      .toISOString()
+      .toLocaleString("en-US", {
+        timeZone: "America/New_York",
+      });
+
     if (
       parseInt(dat.start_date.slice(8, 10)) >= weeks[i][0].start &&
       parseInt(dat.end_date.slice(8, 10)) <= weeks[i][0].end
     ) {
       var monthLength = weeks[i].length - 1;
-      html += `<td scope="col">${weeks[i][monthLength]} ${weeks[i][0].start} - ${weeks[i][0].end}</td>`;
+      html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][0].start} - ${weeks[i][0].end}</td>`;
     } else if (
       parseInt(dat.start_date.slice(8, 10)) >= weeks[i][1].start &&
       parseInt(dat.end_date.slice(8, 10)) <= weeks[i][1].end
     ) {
       var monthLength = weeks[i].length - 1;
-      html += `<td scope="col">${weeks[i][monthLength]} ${weeks[i][1].start} - ${weeks[i][1].end}</td>`;
+      html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][1].start} - ${weeks[i][1].end}</td>`;
     } else if (
       parseInt(dat.start_date.slice(8, 10)) >= weeks[i][2].start &&
       parseInt(dat.end_date.slice(8, 10)) <= weeks[i][2].end
     ) {
       var monthLength = weeks[i].length - 1;
-      html += `<td scope="col">${weeks[i][monthLength]} ${weeks[i][2].start} - ${weeks[i][2].end}</td>`;
+      html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][2].start} - ${weeks[i][2].end}</td>`;
     } else if (
       parseInt(dat.start_date.slice(8, 10)) >= weeks[i][3].start &&
       parseInt(dat.end_date.slice(8, 10)) <= weeks[i][3].end
     ) {
       var monthLength = weeks[i].length - 1;
-      html += `<td scope="col">${weeks[i][monthLength]} ${weeks[i][3].start} - ${weeks[i][3].end}</td>`;
+      html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][3].start} - ${weeks[i][3].end}</td>`;
     } else if (
       parseInt(dat.start_date.slice(8, 10)) >= weeks[i][4].start ||
       parseInt(dat.end_date.slice(8, 10)) <= weeks[i][4].end
     ) {
       var monthLength = weeks[i].length - 1;
-      html += `<td scope="col">${weeks[i][monthLength]} ${weeks[i][4].start} - ${weeks[i][4].end}</td>`;
+      html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][4].start} - ${weeks[i][4].end}</td>`;
     } else {
-      html += `<td scope="col">Couldn't load week</td>`;
+      html += `<td id="week" scope="col">Couldn't load week</td>`;
     }
-    html += `<td scope="col"><input class='table-input' id="start${
-      dat.id
-    }" value='${dat.start_date.slice(
-      0,
-      10
-    )}'/></td><td scope="col"><input class='table-input' id="end${
-      dat.id
-    }" value='${dat.end_date.slice(0, 10)}'/></td>`;
+    if (
+      dat.start_date.slice(0, 10) <= today &&
+      dat.end_date.slice(0, 10) >= yesterday
+    ) {
+      html += `<td class="this-week" scope="col"><input type='date' class='table-input' id="start${
+        dat.id
+      }" value='${dat.start_date.slice(
+        0,
+        10
+      )}'/></td><td class="this-week" scope="col"><input type='date' class='table-input' id="end${
+        dat.id
+      }" value='${dat.end_date.slice(0, 10)}'/></td>`;
+    } else {
+      html += `<td scope="col"><input type='date' class='table-input' id="start${
+        dat.id
+      }" value='${dat.start_date.slice(
+        0,
+        10
+      )}'/></td><td scope="col"><input type='date' class='table-input' id="end${
+        dat.id
+      }" value='${dat.end_date.slice(0, 10)}'/></td>`;
+    }
     if (dat.cooler_size.toLowerCase() == "62 quart") {
       html += `<td scope="col"><select name="cooler" id="cooler${dat.id}">
       <option value="${
@@ -233,7 +254,7 @@ function fillTable(data) {
     }
     html += `<td scope="col"><input class='table-input' id="address${dat.id}" value='${dat.delivery_address}'/></td><td scope="col" class="userEmail"><input class='table-input' id="name${dat.id}" value='${dat.customer_name}'/></td>`;
     html += `<td scope="col"><input id="phoneNumber${dat.id}" class='table-input' maxlength="13" value='${dat.customer_phone}'/></td><td scope="col"><input class='table-input' id="email${dat.id}" value='${dat.customer_email}'/></td>`;
-    html += `<td scope="col"><select style="width: 7.5vw;" name="neighborhood" id="neighborhood${dat.id}">
+    html += `<td scope="col"><select style="width: 100px;" name="neighborhood" id="neighborhood${dat.id}">
     <option value="${dat.neighborhood}">${dat.neighborhood_name}</option>
     <option value="1">Ocean Hill</option>
     <option value="2">Corolla Light</option>
@@ -335,15 +356,16 @@ function deleteRes(id) {
 function searchEmail() {
   let input = document.getElementById("searchbar").value;
   input = input.toLowerCase();
-  let x = document.getElementsByClassName("userEmail");
-  let y = document.getElementsByClassName("email-wrapper");
+  let y = document.getElementsByClassName("userEmail");
+  let x = document.getElementsByClassName("row-wrapper");
 
   for (i = 0; i < x.length; i++) {
+    console.log(y[i].style.display);
     if (!x[i].innerHTML.toLowerCase().includes(input)) {
-      y[i].style.display = "none";
+      x[i].style.display = "none";
     } else {
-      x[i].style.display = "span";
-      y[i].style.display = "block";
+      x[i].style.display = "";
+      y[i].style.display = "";
     }
   }
 }
