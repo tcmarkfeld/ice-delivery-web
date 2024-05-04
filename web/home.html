@@ -34,7 +34,42 @@
 
       <div class="container">
         <form class="add-form" id="myForm" onsubmit="return false;">
-            <label for="cooler">Cooler Size:</label>
+            <label for="name">Customer Name:</label>
+                <input class="add-delivery-input" id="name" name="name">
+            <label for="phoneNumber">Phone Number:</label>
+                <input class="add-delivery-input" id="phoneNumber" maxlength="13" />
+            <label for="address">Delivery Address:</label>
+                <input class="add-delivery-input" id="address" name="address" value="" onchange="checkNeighborhood(this.value)">
+            <label for="neighborhood">Neighborhood:</label>
+                <select name="neighborhood" id="neighborhoodselect">
+                    <option value="null">Select one...</option>
+                    <option value="1">Ocean Hill</option>
+                    <option value="2">Corolla Light</option>
+                    <option value="3">Whalehead</option>
+                    <option value="18">Whalehead Right</option>
+                    <option value="19">Cruz Bay (Soundfront at Corolla Bay)</option>
+                    <option value="17">Monteray Shores</option>
+                    <option value="16">Buck Island</option>
+                    <option value="15">Crown Point</option>
+                    <option value="14">KLMPQ</option>
+                    <option value="13">HIJO</option>
+                    <option value="12">Section F</option>
+                    <option value="4">Currituck Club</option>
+                    <option value="11">Section E</option>
+                    <option value="10">Section D</option>
+                    <option value="9">Section C</option>
+                    <option value="8">Section B</option>
+                    <option value="7">Section A</option>
+                    <option value="6">Spindrift</option>
+                    <option value="5">Pine Island</option>
+                    <option value="20">WHC South Lawn</option>
+                    <option value="21">WHC North Lawn</option>
+                </select>
+                <label for="startdate">Start Date:</label>
+                <input class="add-delivery-input" type="date" id="startdate" name="startdate">
+                <label for="enddate">End Date: <span style="color: rgb(183, 43, 43)">*last day that delivery is needed*</span></label>
+                <input class="add-delivery-input" type="date" id="enddate" name="enddate">
+                <label for="cooler">Cooler Size:</label>
                 <select name="cooler" id="cooler">
                     <option value="null">Select one...</option>
                     <option value="40 Quart">40 Quart</option>
@@ -46,38 +81,8 @@
                     <option value="Loose ice">Loose ice</option>
                     <option value="Bagged ice">Bagged ice</option>
                 </select>
-            <label for="neighborhood">Neighborhood:</label>
-                <select name="neighborhood" id="neighborhood">
-                    <option value="null">Select one...</option>
-                    <option value="1">Ocean Hill</option>
-                    <option value="2">Corolla Light</option>
-                    <option value="3">Whalehead</option>
-                    <option value="16">Cruz Bay (Soundfront at Corolla Bay)</option>
-                    <option value="15">Monteray Shores</option>
-                    <option value="14">Buck Island</option>
-                    <option value="13">Crown Point</option>
-                    <option value="12">KLMPQ</option>
-                    <option value="11">HIJO</option>
-                    <option value="10">Section F</option>
-                    <option value="4">Currituck Club</option>
-                    <option value="9">Section D</option>
-                    <option value="8">Section C</option>
-                    <option value="7">Section B</option>
-                    <option value="6">Section A</option>
-                    <option value="5">Pine Island</option>
-                </select>
-            <label for="address">Delivery Address:</label>
-                <input class="add-delivery-input" id="address" name="address" value="">
-            <label for="name">Customer Name:</label>
-                <input class="add-delivery-input" id="name" name="name">
-            <label for="phoneNumber">Phone Number:</label>
-                <input class="add-delivery-input" id="phoneNumber" maxlength="13" />
-            <label for="email">Customer Email:</label>
-                <input class="add-delivery-input" id="email" name="email">
-            <label for="startdate">Start Date:</label>
-                <input class="add-delivery-input" type="date" id="startdate" name="startdate">
-            <label for="enddate">End Date: <span style="color: rgb(183, 43, 43)">*last day that delivery is needed*</span></label>
-                <input class="add-delivery-input" type="date" id="enddate" name="enddate">
+                <label for="email">Customer Email:</label>
+                    <input class="add-delivery-input" id="email" name="email">
             <label for="startdate">Special instructions (optional):</label>
                 <input class="add-delivery-input" style="margin-bottom: 15px;" id="special" name="special">
             <button class="btn submit-button" onclick="checkFields();">Submit</button>
@@ -87,8 +92,8 @@
       <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <script src="./js/index.js"></script>
-    <script src="./js/login.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+      <script src="./js/login.js"></script>
+      <script src="./js/index.js"></script>
 </body>
 </html>

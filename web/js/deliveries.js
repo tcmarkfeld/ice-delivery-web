@@ -208,21 +208,21 @@ function fillTable(data) {
       dat.start_date.slice(0, 10) <= today &&
       dat.end_date.slice(0, 10) >= yesterday
     ) {
-      html += `<td class="this-week" scope="col"><input type='date' class='table-input' id="start${
+      html += `<td class="this-week" scope="col"><input type='date' class='table-date table-input' id="start${
         dat.id
       }" value='${dat.start_date.slice(
         0,
         10
-      )}'/></td><td class="this-week" scope="col"><input type='date' class='table-input' id="end${
+      )}'/></td><td class="this-week" scope="col"><input type='date' class='table-date table-input' id="end${
         dat.id
       }" value='${dat.end_date.slice(0, 10)}'/></td>`;
     } else {
-      html += `<td scope="col"><input type='date' class='table-input' id="start${
+      html += `<td scope="col"><input type='date' class='table-date table-input' id="start${
         dat.id
       }" value='${dat.start_date.slice(
         0,
         10
-      )}'/></td><td scope="col"><input type='date' class='table-input' id="end${
+      )}'/></td><td scope="col"><input type='date' class='table-date table-input' id="end${
         dat.id
       }" value='${dat.end_date.slice(0, 10)}'/></td>`;
     }

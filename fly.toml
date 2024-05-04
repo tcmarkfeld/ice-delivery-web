@@ -1,6 +1,6 @@
-# fly.toml file generated for ice-delivery-web on 2023-02-14T19:34:58-06:00
+# fly.toml file generated for corollaicedelivery on 2023-06-08T05:58:47-04:00
 
-app = "ice-delivery-web"
+app = "corollaicedelivery"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
