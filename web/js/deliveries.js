@@ -18,106 +18,89 @@ async function getDeliveries() {
   return data;
 }
 
-function getWeeksInMonth(year, month) {
-  const weeks = [],
-    firstDate = new Date(year, month, 1),
-    lastDate = new Date(year, month + 1, 0),
-    numDays = lastDate.getDate();
+// function getWeeksInMonth(year, month) {
+//   const weeks = [],
+//     firstDate = new Date(year, month, 1),
+//     lastDate = new Date(year, month + 1, 0),
+//     numDays = lastDate.getDate();
 
-  let dayOfWeekCounter = firstDate.getDay();
+//   let dayOfWeekCounter = firstDate.getDay();
 
-  for (let date = 1; date <= numDays; date++) {
-    if (dayOfWeekCounter === 0 || weeks.length === 0) {
-      weeks.push([]);
-    }
-    weeks[weeks.length - 1].push(date);
-    dayOfWeekCounter = (dayOfWeekCounter + 1) % 7;
-  }
+//   for (let date = 1; date <= numDays; date++) {
+//     if (dayOfWeekCounter === 0 || weeks.length === 0) {
+//       weeks.push([]);
+//     }
+//     weeks[weeks.length - 1].push(date);
+//     dayOfWeekCounter = (dayOfWeekCounter + 1) % 7;
+//   }
 
-  if (weeks[0].length < 7) {
-    const beforeIndex1 = addMonth(year, month - 1, 1);
-    const indexRefactor = [...beforeIndex1, ...weeks[0]];
-    weeks[0] = indexRefactor;
-  }
+//   if (weeks[0].length < 7) {
+//     const beforeIndex1 = addMonth(year, month - 1, 1);
+//     const indexRefactor = [...beforeIndex1, ...weeks[0]];
+//     weeks[0] = indexRefactor;
+//   }
 
-  if (weeks[weeks.length - 1].length < 7) {
-    const afterIndex1 = addMonth(year, month + 1, 0);
-    const indexRefactor = [...weeks[weeks.length - 1], ...afterIndex1];
-    weeks[weeks.length - 1] = indexRefactor;
-  }
+//   if (weeks[weeks.length - 1].length < 7) {
+//     const afterIndex1 = addMonth(year, month + 1, 0);
+//     const indexRefactor = [...weeks[weeks.length - 1], ...afterIndex1];
+//     weeks[weeks.length - 1] = indexRefactor;
+//   }
 
-  return weeks
-    .filter((w) => !!w.length)
-    .map((w) => ({
-      start: w[0] - 1,
-      end: w[w.length - 1],
-      dates: w,
-    }));
-}
-
-const addMonth = (year, month, flag) => {
-  const weeks = [],
-    firstDate = new Date(year, month, 1),
-    lastDate = new Date(year, month + 1, 0),
-    numDays = lastDate.getDate();
-
-  let dayOfWeekCounter = firstDate.getDay();
-
-  for (let date = 1; date <= numDays; date++) {
-    if (dayOfWeekCounter === 0 || weeks.length === 0) {
-      weeks.push([]);
-    }
-    weeks[weeks.length - 1].push(date);
-    dayOfWeekCounter = (dayOfWeekCounter + 1) % 7;
-  }
-  if (flag === 0) {
-    return weeks[0];
-  }
-  if (flag === 1) {
-    return weeks[weeks.length - 1];
-  }
-  return [];
-};
-
-const year = new Date().getFullYear();
-const weeks = [];
-const aprilDates = getWeeksInMonth(year, 3);
-const mayDates = getWeeksInMonth(year, 4);
-const juneDates = getWeeksInMonth(year, 5);
-const julyDates = getWeeksInMonth(year, 6);
-const augustDates = getWeeksInMonth(year, 7);
-const septDates = getWeeksInMonth(year, 8);
-
-// aprilDates.splice(0, 1);
-
-// if (aprilDates[4].start === mayDates[0].start) {
-//   mayDates.splice(0, 1);
+//   return weeks
+//     .filter((w) => !!w.length)
+//     .map((w) => ({
+//       start: w[0] - 1,
+//       end: w[w.length - 1],
+//       dates: w,
+//     }));
 // }
-// if (mayDates[mayDates.length - 1].start === juneDates[0].start) {
-//   juneDates.splice(0, 1);
-// }
-// if (juneDates[juneDates.length - 1].start === julyDates[0].start) {
-//   julyDates.splice(0, 1);
-// }
-// if (julyDates[julyDates.length - 1].start === augustDates[0].start) {
-//   augustDates.splice(0, 1);
-// }
-// if (augustDates[augustDates.length - 1].start === septDates[0].start) {
-//   septDates.splice(0, 1);
-// }
-weeks.push(aprilDates);
-weeks.push(mayDates);
-weeks.push(juneDates);
-weeks.push(julyDates);
-weeks.push(augustDates);
-weeks.push(septDates);
 
-aprilDates.push("April");
-mayDates.push("May");
-juneDates.push("June");
-julyDates.push("July");
-augustDates.push("August");
-septDates.push("September");
+// const addMonth = (year, month, flag) => {
+//   const weeks = [],
+//     firstDate = new Date(year, month, 1),
+//     lastDate = new Date(year, month + 1, 0),
+//     numDays = lastDate.getDate();
+
+//   let dayOfWeekCounter = firstDate.getDay();
+
+//   for (let date = 1; date <= numDays; date++) {
+//     if (dayOfWeekCounter === 0 || weeks.length === 0) {
+//       weeks.push([]);
+//     }
+//     weeks[weeks.length - 1].push(date);
+//     dayOfWeekCounter = (dayOfWeekCounter + 1) % 7;
+//   }
+//   if (flag === 0) {
+//     return weeks[0];
+//   }
+//   if (flag === 1) {
+//     return weeks[weeks.length - 1];
+//   }
+//   return [];
+// };
+
+// const year = new Date().getFullYear();
+// const weeks = [];
+// const aprilDates = getWeeksInMonth(year, 3);
+// const mayDates = getWeeksInMonth(year, 4);
+// const juneDates = getWeeksInMonth(year, 5);
+// const julyDates = getWeeksInMonth(year, 6);
+// const augustDates = getWeeksInMonth(year, 7);
+// const septDates = getWeeksInMonth(year, 8);
+
+// weeks.push(aprilDates);
+// weeks.push(mayDates);
+// weeks.push(juneDates);
+// weeks.push(julyDates);
+// weeks.push(augustDates);
+// weeks.push(septDates);
+
+// aprilDates.push("April");
+// mayDates.push("May");
+// juneDates.push("June");
+// julyDates.push("July");
+// augustDates.push("August");
+// septDates.push("September");
 
 function fillTable(data) {
   var tablebody = document.getElementById("tableBody");
@@ -171,39 +154,6 @@ function fillTable(data) {
         timeZone: "America/New_York",
       });
 
-    // if (
-    //   parseInt(dat.start_date.slice(8, 10)) >= weeks[i][0].start &&
-    //   parseInt(dat.end_date.slice(8, 10)) <= weeks[i][0].end
-    // ) {
-    //   var monthLength = weeks[i].length - 1;
-    //   html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][0].start} - ${weeks[i][0].end}</td>`;
-    // } else if (
-    //   parseInt(dat.start_date.slice(8, 10)) >= weeks[i][1].start &&
-    //   parseInt(dat.end_date.slice(8, 10)) <= weeks[i][1].end
-    // ) {
-    //   var monthLength = weeks[i].length - 1;
-    //   html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][1].start} - ${weeks[i][1].end}</td>`;
-    // } else if (
-    //   parseInt(dat.start_date.slice(8, 10)) >= weeks[i][2].start &&
-    //   parseInt(dat.end_date.slice(8, 10)) <= weeks[i][2].end
-    // ) {
-    //   var monthLength = weeks[i].length - 1;
-    //   html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][2].start} - ${weeks[i][2].end}</td>`;
-    // } else if (
-    //   parseInt(dat.start_date.slice(8, 10)) >= weeks[i][3].start &&
-    //   parseInt(dat.end_date.slice(8, 10)) <= weeks[i][3].end
-    // ) {
-    //   var monthLength = weeks[i].length - 1;
-    //   html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][3].start} - ${weeks[i][3].end}</td>`;
-    // } else if (
-    //   parseInt(dat.start_date.slice(8, 10)) >= weeks[i][4].start ||
-    //   parseInt(dat.end_date.slice(8, 10)) <= weeks[i][4].end
-    // ) {
-    //   var monthLength = weeks[i].length - 1;
-    //   html += `<td id="week" scope="col">${weeks[i][monthLength]} ${weeks[i][4].start} - ${weeks[i][4].end}</td>`;
-    // } else {
-    //   html += `<td id="week" scope="col">Couldn't load week</td>`;
-    // }
     if (
       dat.start_date.slice(0, 10) <= today &&
       dat.end_date.slice(0, 10) >= yesterday
@@ -252,27 +202,36 @@ function fillTable(data) {
       <option value="LOOSE ICE">loose ice</option>
   </select></td>`;
     }
-    html += `<td scope="col"><input class='table-input' id="address${dat.id}" value='${dat.delivery_address}'/></td><td scope="col" class="userEmail"><input class='table-input' id="name${dat.id}" value='${dat.customer_name}'/></td>`;
-    html += `<td scope="col"><input id="phoneNumber${dat.id}" class='table-input' maxlength="13" value='${dat.customer_phone}'/></td><td scope="col"><input class='table-input' id="email${dat.id}" value='${dat.customer_email}'/></td>`;
+    html += `<td scope="col"><input class='table-input' id="address${dat.id}" value='${dat.delivery_address}'/></td>`;
     html += `<td scope="col"><select style="width: 100px;" name="neighborhood" id="neighborhood${dat.id}">
     <option value="${dat.neighborhood}">${dat.neighborhood_name}</option>
     <option value="1">Ocean Hill</option>
     <option value="2">Corolla Light</option>
     <option value="3">Whalehead</option>
-    <option value="16">Cruz Bay (Soundfront at Corolla Bay)</option>
-    <option value="15">Monteray Shores</option>
-    <option value="14">Buck Island</option>
-    <option value="13">Crown Point</option>
-    <option value="12">KLMPQ</option>
-    <option value="11">HIJO</option>
-    <option value="10">Section F</option>
+    <option value="18">Whalehead Right</option>
+    <option value="19">Cruz Bay (Soundfront at Corolla Bay)</option>
+    <option value="17">Monteray Shores</option>
+    <option value="16">Buck Island</option>
+    <option value="15">Crown Point</option>
+    <option value="14">KLMPQ</option>
+    <option value="13">HIJO</option>
+    <option value="12">Section F</option>
     <option value="4">Currituck Club</option>
-    <option value="9">Section D</option>
-    <option value="8">Section C</option>
-    <option value="7">Section B</option>
-    <option value="6">Section A</option>
+    <option value="11">Section E</option>
+    <option value="10">Section D</option>
+    <option value="9">Section C</option>
+    <option value="8">Section B</option>
+    <option value="7">Section A</option>
+    <option value="6">Spindrift</option>
     <option value="5">Pine Island</option>
+    <option value="20">WHC South Lawn</option>
+    <option value="21">WHC North Lawn</option>
 </select></td>`;
+    html += `<td scope="col" class="userEmail"><input class='table-input' id="name${dat.id}" value='${dat.customer_name}'/></td><td scope="col"><input id="phoneNumber${dat.id}" class='table-input' maxlength="13" value='${dat.customer_phone}'/></td><td scope="col"><input class='table-input' id="email${dat.id}" value='${dat.customer_email}'/></td>`;
+    html += `<td scope="col"><input id="coolerNum${dat.id}" class='table-input' value='${dat.cooler_num}'/></td><td scope="col"><input id="limes${dat.id}" class='table-input' value='${dat.bag_limes}'/></td>`;
+    html += `<td scope="col"><input id="oranges${dat.id}" class='table-input' value='${dat.bag_oranges}'/></td><td scope="col"><input id="lemons${dat.id}" class='table-input' value='${dat.bag_lemons}'/></td>`;
+    html += `<td scope="col"><input id="margsalt${dat.id}" class='table-input' value='${dat.marg_salt}'/></td><td scope="col"><input id="tip${dat.id}" class='table-input' value='${dat.tip}'/></td>`;
+    html += `<td scope="col"><input id="deliverytime${dat.id}" class='table-input' value='${dat.deliverytime}'/></td><td scope="col"><input id="timeam${dat.id}" class='table-input' value='${dat.dayornight}'/></td>`;
     html += `<td scope="col"><input class='table-input' id="special${dat.id}" value='${dat.special_instructions}'/></td>`;
     html += `<td scope="col"><button class='btn btn-primary submit-button' onclick="saveChange(${dat.id})">Save</button></td>`;
     html += `<td scope="col"><button class='btn btn-danger' onclick='confirmDelete(${dat.id})'>Delete</button></td></tr>`;
@@ -294,6 +253,14 @@ function saveChange(id) {
   var cooler_size = document.getElementById(`cooler${id}`).value;
   var ice_type = document.getElementById(`icetype${id}`).value;
   var neighborhood = document.getElementById(`neighborhood${id}`).value;
+  var cooler_num = document.getElementById(`coolerNum${id}`).value;
+  var bag_limes = document.getElementById(`limes${id}`).value;
+  var bag_oranges = document.getElementById(`oranges${id}`).value;
+  var bag_lemons = document.getElementById(`lemons${id}`).value;
+  var marg_salt = document.getElementById(`margsalt${id}`).value;
+  var tip = document.getElementById(`tip${id}`).value;
+  var deliverytime = document.getElementById(`deliverytime${id}`).value;
+  var dayornight = document.getElementById(`timeam${id}`).value;
 
   const saveDeliveryURL = `https://ice-delivery.fly.dev/api/delivery/edit/${id}`;
 
@@ -316,6 +283,14 @@ function saveChange(id) {
       cooler_size: cooler_size,
       ice_type: ice_type,
       neighborhood: neighborhood,
+      cooler_num: cooler_num,
+      bag_limes: bag_limes,
+      bag_lemons: bag_lemons,
+      bag_oranges: bag_oranges,
+      marg_salt: marg_salt,
+      tip: tip,
+      deliverytime: deliverytime,
+      dayornight: dayornight,
     }),
   }).then((response) => {
     if (response.status == 200) {

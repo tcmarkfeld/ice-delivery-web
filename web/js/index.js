@@ -69,6 +69,15 @@ function checkFields() {
   var start_date = document.getElementById("startdate").value;
   var end_date = document.getElementById("enddate").value;
   var special = document.getElementById("special").value;
+  var cooler_num = document.getElementById(`coolerNum`).value;
+  var bag_limes = document.getElementById(`limes`).value;
+  var bag_oranges = document.getElementById(`oranges`).value;
+  var bag_lemons = document.getElementById(`lemons`).value;
+  var marg_salt = document.getElementById(`margsalt`).value;
+  var tip = document.getElementById(`tip`).value;
+  var deliverytime = document.getElementById(`deliverytime`).value;
+  var dayornight = document.getElementById(`timeam`).value;
+
   if (special == null) {
     special = "";
   }
@@ -81,7 +90,13 @@ function checkFields() {
     (name === "") |
     (phone === "") |
     (start_date === "") |
-    (end_date === "")
+    (end_date === "") |
+    (cooler_num === "") |
+    (bag_limes === "") |
+    (bag_lemons === "") |
+    (bag_oranges === "") |
+    (marg_salt === "") |
+    (tip === "")
   ) {
     alert("Please fill out all fields");
   } else {
@@ -104,10 +119,19 @@ function checkFields() {
         cooler_size: cooler,
         ice_type: ice,
         neighborhood: neighborhood,
+        cooler_num: cooler_num,
+        bag_limes: bag_limes,
+        bag_lemons: bag_lemons,
+        bag_oranges: bag_oranges,
+        marg_salt: marg_salt,
+        tip: tip,
+        deliverytime: deliverytime,
+        dayornight: dayornight,
       }),
     }).then((response) => {
       if (response.status == 200) {
         alert("Reservation successfully added!");
+        clearInp();
       } else {
         alert("Something went wrong. Please try again");
       }

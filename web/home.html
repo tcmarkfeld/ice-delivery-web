@@ -34,58 +34,138 @@
 
       <div class="container">
         <form class="add-form" id="myForm" onsubmit="return false;">
-            <label for="name">Customer Name:</label>
+          <h2 style="text-align: center;">Add Delivery</h2>
+          <p><span style="color: rgb(183, 43, 43)">*</span> Indicates required field</p>
+          <div class="grid-container">
+            <div class="item-wrapper">
+              <div class="item-div">
+                <label class="item" for="name">Customer Name:<span style="color: rgb(183, 43, 43)">*</span></label>
                 <input class="add-delivery-input" id="name" name="name">
-            <label for="phoneNumber">Phone Number:</label>
+              </div>
+              <div class="item-div">
+                <label class="item" for="phoneNumber">Phone Number:<span style="color: rgb(183, 43, 43)">*</span></label>
                 <input class="add-delivery-input" id="phoneNumber" maxlength="13" />
-            <label for="address">Delivery Address:</label>
+              </div>
+            </div>
+            <div class="item-wrapper">
+              <div class="item-div">
+                <label class="item" for="address">Delivery Address:<span style="color: rgb(183, 43, 43)">*</span></label>
                 <input class="add-delivery-input" id="address" name="address" value="" onchange="checkNeighborhood(this.value)">
-            <label for="neighborhood">Neighborhood:</label>
+              </div>
+                <label class="item" for="neighborhood">Neighborhood:<span style="color: rgb(183, 43, 43)">*</span></label>
                 <select name="neighborhood" id="neighborhoodselect">
-                    <option value="null">Select one...</option>
-                    <option value="1">Ocean Hill</option>
-                    <option value="2">Corolla Light</option>
-                    <option value="3">Whalehead</option>
-                    <option value="18">Whalehead Right</option>
-                    <option value="19">Cruz Bay (Soundfront at Corolla Bay)</option>
-                    <option value="17">Monteray Shores</option>
-                    <option value="16">Buck Island</option>
-                    <option value="15">Crown Point</option>
-                    <option value="14">KLMPQ</option>
-                    <option value="13">HIJO</option>
-                    <option value="12">Section F</option>
-                    <option value="4">Currituck Club</option>
-                    <option value="11">Section E</option>
-                    <option value="10">Section D</option>
-                    <option value="9">Section C</option>
-                    <option value="8">Section B</option>
-                    <option value="7">Section A</option>
-                    <option value="6">Spindrift</option>
-                    <option value="5">Pine Island</option>
-                    <option value="20">WHC South Lawn</option>
-                    <option value="21">WHC North Lawn</option>
+                  <option value="null">Select one...</option>
+                  <option value="1">Ocean Hill</option>
+                  <option value="2">Corolla Light</option>
+                  <option value="3">Whalehead</option>
+                  <option value="18">Whalehead Right</option>
+                  <option value="19">Cruz Bay (Soundfront at Corolla Bay)</option>
+                  <option value="17">Monteray Shores</option>
+                  <option value="16">Buck Island</option>
+                  <option value="15">Crown Point</option>
+                  <option value="14">KLMPQ</option>
+                  <option value="13">HIJO</option>
+                  <option value="12">Section F</option>
+                  <option value="4">Currituck Club</option>
+                  <option value="11">Section E</option>
+                  <option value="10">Section D</option>
+                  <option value="9">Section C</option>
+                  <option value="8">Section B</option>
+                  <option value="7">Section A</option>
+                  <option value="6">Spindrift</option>
+                  <option value="5">Pine Island</option>
+                  <option value="20">WHC South Lawn</option>
+                  <option value="21">WHC North Lawn</option>
                 </select>
-                <label for="startdate">Start Date:</label>
-                <input class="add-delivery-input" type="date" id="startdate" name="startdate">
-                <label for="enddate">End Date: <span style="color: rgb(183, 43, 43)">*last day that delivery is needed*</span></label>
-                <input class="add-delivery-input" type="date" id="enddate" name="enddate">
-                <label for="cooler">Cooler Size:</label>
-                <select name="cooler" id="cooler">
-                    <option value="null">Select one...</option>
-                    <option value="40 Quart">40 Quart</option>
-                    <option value="62 Quart">62 Quart</option>
-                </select>
-            <label for="icetype">Ice Type:</label>
-                <select name="icetype" id="icetype">
-                    <option value="null">Select one...</option>
-                    <option value="Loose ice">Loose ice</option>
-                    <option value="Bagged ice">Bagged ice</option>
-                </select>
-                <label for="email">Customer Email:</label>
-                    <input class="add-delivery-input" id="email" name="email">
-            <label for="startdate">Special instructions (optional):</label>
-                <input class="add-delivery-input" style="margin-bottom: 15px;" id="special" name="special">
-            <button class="btn submit-button" onclick="checkFields();">Submit</button>
+            </div>
+            <div class="item-wrapper">
+              <label for="startdate">Start Date:<span style="color: rgb(183, 43, 43)">*</span></label>
+              <input class="add-delivery-input" type="date" id="startdate" name="startdate">
+            </div>
+            <div class="item-wrapper">
+              <label for="enddate">End Date: <span style="color: rgb(183, 43, 43)">*last day delivery is needed*</span></label>
+              <input class="add-delivery-input" type="date" id="enddate" name="enddate">
+            </div>
+            <div class="item-wrapper">
+              <label for="cooler">Cooler Size:<span style="color: rgb(183, 43, 43)">*</span></label>
+              <select name="cooler" id="cooler">
+                <option value="null">Select one...</option>
+                <option value="40 Quart">40 Quart</option>
+                <option value="62 Quart">62 Quart</option>
+              </select>
+            </div>
+            <div class="item-wrapper">
+              <label for="icetype">Ice Type:<span style="color: rgb(183, 43, 43)">*</span></label>
+              <select name="icetype" id="icetype">
+                <option value="null">Select one...</option>
+                <option value="Loose ice">Loose ice</option>
+                <option value="Bagged ice">Bagged ice</option>
+              </select>
+            </div>
+            <div class="item-wrapper">
+              <label class="item" for="coolerNUm">Number of Coolers:<span style="color: rgb(183, 43, 43)">*</span></label>
+              <input class="add-delivery-input" type="number" id="coolerNum" name="coolerNum" min="1">
+            </div>
+            <div class="item-wrapper">
+              <label class="item" for="tip">Tip Amount (in $):</label>
+              <input class="add-delivery-input" type="number" id="tip" name="tip" min="0" value="0">
+            </div>
+            <div class="extras-container">
+              <div class="item-wrapper">
+                <label class="item" for="limes">Limes:</label>
+                <input class="add-delivery-input" type="number" id="limes" name="limes" min="0" value="0">
+              </div>
+              <div class="item-wrapper">
+                <label class="item" for="oranges">Oranges:</label>
+                <input class="add-delivery-input" type="number" id="oranges" name="oranges" min="0" value="0">
+              </div>
+            </div>
+            <div class="extras-container">
+              <div class="item-wrapper">
+                <label class="item" for="lemons">Lemons:</label>
+                <input class="add-delivery-input" type="number" id="lemons" name="lemons" min="0" value="0">
+              </div>
+              <div class="item-wrapper">
+                <label class="item" for="margsalt">Marg Salt:</label>
+                <input class="add-delivery-input" type="number" id="margsalt" name="margsalt" min="0" value="0">
+              </div>
+            </div>
+            <div class="item-wrapper">
+              <label class="item" for="deliverytime">Delivery Time (if customer wants later delivery first day):</label>
+              <select name="deliverytime" id="deliverytime">
+                <option value="">Select...</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+            <div class="item-wrapper">
+              <label class="item" for="timeam">AM or PM:</label>
+              <select name="timeam" id="timeam">
+                <option value="">Select...</option>
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+            </div>
+            <div class="item-wrapper">
+              <label for="email">Customer Email:</label>
+              <input class="add-delivery-input" id="email" name="email">
+            </div>
+            <div class="item-wrapper">
+              <label for="special">Special instructions:</label>
+              <input class="add-delivery-input" style="margin-bottom: 15px;" id="special" name="special">
+            </div>
+          </div>          
+          <button class="btn submit-button" onclick="checkFields();">Submit</button>
           </form> 
       </div>
 
