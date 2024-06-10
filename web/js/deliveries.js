@@ -230,7 +230,7 @@ function fillTable(data) {
     html += `<td scope="col" class="userEmail"><input class='table-input' id="name${dat.id}" value='${dat.customer_name}'/></td><td scope="col"><input id="phoneNumber${dat.id}" class='table-input' maxlength="13" value='${dat.customer_phone}'/></td><td scope="col"><input class='table-input' id="email${dat.id}" value='${dat.customer_email}'/></td>`;
     html += `<td scope="col"><input id="coolerNum${dat.id}" class='table-input' value='${dat.cooler_num}'/></td><td scope="col"><input id="limes${dat.id}" class='table-input' value='${dat.bag_limes}'/></td>`;
     html += `<td scope="col"><input id="oranges${dat.id}" class='table-input' value='${dat.bag_oranges}'/></td><td scope="col"><input id="lemons${dat.id}" class='table-input' value='${dat.bag_lemons}'/></td>`;
-    html += `<td scope="col"><input id="margsalt${dat.id}" class='table-input' value='${dat.marg_salt}'/></td><td scope="col"><input id="tip${dat.id}" class='table-input' value='${dat.tip}'/></td>`;
+    html += `<td scope="col"><input id="margsalt${dat.id}" class='table-input' value='${dat.marg_salt}'/></td><td scope="col"><input id="freezepops${dat.id}" class='table-input' value='${dat.freeze_pops}'/></td><td scope="col"><input id="tip${dat.id}" class='table-input' value='${dat.tip}'/></td>`;
     html += `<td scope="col"><input id="deliverytime${dat.id}" class='table-input' value='${dat.deliverytime}'/></td><td scope="col"><input id="timeam${dat.id}" class='table-input' value='${dat.dayornight}'/></td>`;
     html += `<td scope="col"><input class='table-input' id="special${dat.id}" value='${dat.special_instructions}'/></td>`;
     html += `<td scope="col"><button class='btn btn-primary submit-button' onclick="saveChange(${dat.id})">Save</button></td>`;
@@ -258,6 +258,7 @@ function saveChange(id) {
   var bag_oranges = document.getElementById(`oranges${id}`).value;
   var bag_lemons = document.getElementById(`lemons${id}`).value;
   var marg_salt = document.getElementById(`margsalt${id}`).value;
+  var freeze_pops = document.getElementById(`freezepops${id}`).value;
   var tip = document.getElementById(`tip${id}`).value;
   var deliverytime = document.getElementById(`deliverytime${id}`).value;
   var dayornight = document.getElementById(`timeam${id}`).value;
@@ -288,6 +289,7 @@ function saveChange(id) {
       bag_lemons: bag_lemons,
       bag_oranges: bag_oranges,
       marg_salt: marg_salt,
+      freeze_pops: freeze_pops,
       tip: tip,
       deliverytime: deliverytime,
       dayornight: dayornight,

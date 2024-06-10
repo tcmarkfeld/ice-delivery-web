@@ -1,81 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ice Delivery | All</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link href="./css/index.css" rel="stylesheet">
-    <link href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css" rel="stylesheet">
-    <link rel="icon" href="./assets/ice-delivery.webp">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ice Delivery | All</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link href="./css/index.css" rel="stylesheet">
+  <link href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css" rel="stylesheet">
+  <link rel="icon" href="./assets/ice-delivery.webp">
 </head>
+
 <body onload="verifyLoggedIn(), getDeliveries()">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a href="./index.html"><img src="./assets/ice-delivery.webp" class="ice-logo" /></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto nav-ul">
-            <li class="nav-item">
-              <a class="nav-link" href="./home.html">Add Delivery</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">All Deliveries</a>
-            </li>
-            <li class="nav-item logout-btn">
-              <button class="btn-nav-link" onclick="clearAuthData()">Logout</button>
-            </li>
-          </ul>
-        </div>
-      </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a href="./index.html">
+      <Image src="./assets/ice-delivery.webp" class="ice-logo" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <div class="table-container">
-      <h2 style="text-align: center;">All Deliveries</h2>
-      <input id="searchbar" onkeyup="searchEmail()" type="text"
-        name="search" placeholder="Search customer..">
-        <section id="deliveries">
-            <table id="myTable" class="display table table-striped table-bordered table-hover">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">End Date</th>
-                    <th scope="col">Cooler Size</th>
-                    <th scope="col">Ice Type</th>
-                    <th scope="col">Delivery Address</th>
-                    <th scope="col">Neighborhood</th>
-                    <th scope="col">Customer Name</th>
-                    <th scope="col">Customer Phone</th>
-                    <th scope="col">Customer Email</th>
-                    <th scope="col"># Coolers</th>
-                    <th scope="col">Limes</th>
-                    <th scope="col">Oranges</th>
-                    <th scope="col">Lemons</th>
-                    <th scope="col">Marg Salt</th>
-                    <th scope="col">Tip</th>
-                    <th scope="col">Delivery time (in hours)</th>
-                    <th scope="col">AM/PM Delivery</th>
-                    <th scope="col">Special Instructions</th>
-                    <th scope="col">Save</th>
-                    <th scope="col">Delete</th>
-                  </tr>
-                </thead>
-                <tbody id="tableBody">
-                  <tr id="week">
-                  </tr>                
-                </tbody>
-              </table>
-        </section>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto nav-ul">
+        <li class="nav-item">
+          <a class="nav-link" href="./home.html">Add Delivery</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">All Deliveries</a>
+        </li>
+        <li class="nav-item logout-btn">
+          <button class="btn-nav-link" onclick="clearAuthData()">Logout</button>
+        </li>
+      </ul>
     </div>
+  </nav>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <script src="./js/deliveries.js"></script>
-    <script src="./js/login.js"></script>
+  <div class="table-container">
+    <h2 style="text-align: center;">All Deliveries</h2>
+    <input id="searchbar" onkeyup="searchEmail()" type="text" name="search" placeholder="Search customer..">
+    <section id="deliveries">
+      <table id="myTable" class="display table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Cooler Size</th>
+            <th scope="col">Ice Type</th>
+            <th scope="col">Delivery Address</th>
+            <th scope="col">Neighborhood</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Customer Phone</th>
+            <th scope="col">Customer Email</th>
+            <th scope="col"># Coolers</th>
+            <th scope="col">Limes</th>
+            <th scope="col">Oranges</th>
+            <th scope="col">Lemons</th>
+            <th scope="col">Marg Salt</th>
+            <th scope="col">Freeze Pops</th>
+            <th scope="col">Tip</th>
+            <th scope="col">Delivery time (in hours)</th>
+            <th scope="col">AM/PM Delivery</th>
+            <th scope="col">Special Instructions</th>
+            <th scope="col">Save</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr id="week">
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+  <script src="./js/deliveries.js"></script>
+  <script src="./js/login.js"></script>
 </body>
+
 </html>

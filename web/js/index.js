@@ -74,6 +74,7 @@ function checkFields() {
   var bag_oranges = document.getElementById(`oranges`).value;
   var bag_lemons = document.getElementById(`lemons`).value;
   var marg_salt = document.getElementById(`margsalt`).value;
+  var freeze_pops = document.getElementById(`freezepops`).value;
   var tip = document.getElementById(`tip`).value;
   var deliverytime = document.getElementById(`deliverytime`).value;
   var dayornight = document.getElementById(`timeam`).value;
@@ -96,6 +97,7 @@ function checkFields() {
     (bag_lemons === "") |
     (bag_oranges === "") |
     (marg_salt === "") |
+    (freeze_pops === "") |
     (tip === "")
   ) {
     alert("Please fill out all fields");
@@ -124,6 +126,7 @@ function checkFields() {
         bag_lemons: bag_lemons,
         bag_oranges: bag_oranges,
         marg_salt: marg_salt,
+        freeze_pops: freeze_pops,
         tip: tip,
         deliverytime: deliverytime,
         dayornight: dayornight,
