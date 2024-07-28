@@ -87,6 +87,7 @@ function checkFields() {
     (cooler === "") |
     (ice === "") |
     (neighborhood === "") |
+    (neighborhood === "null") |
     (address === "") |
     (name === "") |
     (phone === "") |
